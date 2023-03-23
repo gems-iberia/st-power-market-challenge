@@ -36,11 +36,10 @@ Alternatively README.md could be used to build a report if you prefer to code in
 
 #### Proposed metrics
 1. Give an overview of the top 10 agents in terms of traded volumes
-2. Calculate an hourly Volume-Weighted Average Price (vwap)
+2. Calculate an hourly Volume-Weighted Average Price (vwap). In belows formula, `P` is the trades price and `V` the volume of every one of the n trades within the hour. 
 ```math
 vwap = \frac{ \sum_{n} (P_i \cdot V_i) } {\sum_{n} V_i}
 ```
-where `P` is the trades price and `V` the volume of every one of the n trades within the hour. 
 3. Score agents' trades according to their spread with vwap. Context: someone who would be able to structurally sell above vwap, or buy below, would be doing a good job.  
 
 
