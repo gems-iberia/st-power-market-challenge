@@ -11,9 +11,9 @@ Time is scarce, we know. Therefore we ask you not to spend more than 4 hours on 
 This coding-challenge is part of a formal process and is used in collaboration with the recruiting companies we work with.  Submitting a pull-request will not automatically trigger the recruitement process.
 ## Who are we 
 
-We are the Short-Term Optimisation team of BP Iberia within [GEM](https://gems.engie.com/).
+We are the Short-Term Optimisation team of BP Iberia within [GEMS](https://gems.engie.com/).
 
-[GEM](https://gems.engie.com/), which stands for 'Global Energy Management', is the energy management arm of [ENGIE](https://www.engie.com/), one of the largest global energy players, 
+[GEMS](https://gems.engie.com/), which stands for 'Global Energy Management', is the energy management arm of [ENGIE](https://www.engie.com/), one of the largest global energy players, 
 with access to local markets all over the world.  
 
 BP Iberia covers the GEMS activities of Spain & Portugal, consisting of around 75 people with experience in energy markets, IT and modeling. In smaller teams consisting of a mix of people with different experiences, we are active on the [day-ahead](https://en.wikipedia.org/wiki/European_Power_Exchange#Day-ahead_markets) market, [intraday markets](https://en.wikipedia.org/wiki/European_Power_Exchange#Intraday_markets) and [collaborate with the TSO to balance the grid continuously](https://en.wikipedia.org/wiki/Transmission_system_operator#Electricity_market_operations).
@@ -32,7 +32,6 @@ The provided dataset is based on publicly available trade data published by [OMI
 
 #### Format
 Coding and presentation can be done in a Jupiter Notebook which should be uploaded in a new branch to this repository. 
-Alternatively README.md could be used to build a report if you prefer to code in regular .py files.
 
 #### Proposed metrics
 1. Give an overview of the top 10 agents in terms of traded volumes
