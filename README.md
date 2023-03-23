@@ -27,6 +27,9 @@ Analyse the provided trading data in order to get some insights in the Iberian c
 In order to build some insight, we propose you calculate and present below metrics. You should at least use one month of data from the dataset provided. 
 Feel free to use the complete dataset. 
 
+#### Data
+The provided dataset is based on publicly available trade data published by [OMIE](https://www.omie.es/es/file-access-list). 
+
 #### Format
 Coding and presentation can be done in a Jupiter Notebook which should be uploaded in a new branch to this repository. 
 Alternatively README.md could be used to build a report if you prefer to code in regular .py files.
@@ -35,8 +38,9 @@ Alternatively README.md could be used to build a report if you prefer to code in
 1. Give an overview of the top 10 agents in terms of traded volumes
 2. Calculate an hourly Volume-Weighted Average Price (vwap)
 ```math
-vwap = \frac{\sum_{i=1}^{n}(P_i \cdot V_i)}{\sum_{i=1}^{n}V_i}
+vwap = \frac{ \sum_{n} (P_i \cdot V_i) } {\sum_{n} V_i}
 ```
+where `P` is the trades price and `V` the volume of every one of the n trades within the hour. 
 3. Score agents' trades according to their spread with vwap. Context: someone who would be able to structurally sell above vwap, or buy below, would be doing a good job.  
 
 
