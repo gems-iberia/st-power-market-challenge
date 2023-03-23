@@ -6,7 +6,7 @@ Below you can find the description of a analysis challenge that we ask people wi
 
 The goal of this coding challenge is to provide the applicant some insight into the business we're in and as such provide the applicant an indication about the challenges she/he will be confronted with. 
 
-Time is scarce, we know. Therefore we ask you not to spend limited time on this challenge. We know it is not possible to deliver a finished implementation of the challenge in only four hours. Even though your submission will not be complete, it will provide us plenty of information and topics to discuss later on during the talks.
+Time is scarce, we know. Therefore we ask you not to spend more than 4 hours on this challenge. . We know it is not possible to deliver a finished implementation of the challenge in only four hours. Even though your submission will not be complete, it will provide us plenty of information and topics to discuss later on during the talks.
 
 This coding-challenge is part of a formal process and is used in collaboration with the recruiting companies we work with.  Submitting a pull-request will not automatically trigger the recruitement process.
 ## Who are we 
@@ -21,12 +21,28 @@ BP Iberia covers the GEMS activities of Spain & Portugal, consisting of around 7
 ## The challenge
 
 ### In short
+Analyse the provided trading data in order to get some insights in the Iberian continuous intraday power market. 
+
 ### More in detail
+In order to build some insight, we propose you calculate and present below metrics. You should at least use one month of data from the dataset provided. 
+Feel free to use the complete dataset. 
+
+#### Format
+Coding and presentation can be done in a Jupiter Notebook which should be uploaded in a new branch to this repository. 
+Alternatively README.md could be used to build a report if you prefer to code in regular .py files.
+
+#### Proposed metrics
+1. Give an overview of the top 10 agents in terms of traded volumes
+2. Calculate an hourly Volume-Weighted Average Price (vwap)
+```math
+vwap = \frac{\sum_{i=1}^{n}(P_i \cdot V_i)}{\sum_{i=1}^{n}V_i}
+```
+3. Score agents' trades according to their spread with vwap. Context: someone who would be able to structurally sell above vwap, or buy below, would be doing a good job.  
 
 
 ### Want more challenge?
 
-Having fun with this challenge and want to make it more realistic. Optionally, do one of the extra's below:
+Having fun with this challenge and want to make it more realistic? Feel free to come up with your own metrics of visuals to build further insights 
 
 
 ## More info
