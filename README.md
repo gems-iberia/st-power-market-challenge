@@ -55,8 +55,3 @@ For more info on energy management, check out:
 
  - [OMIE - Mercado de electricidad](https://www.omie.es/es/mercado-de-electricidad)
 
-
-## FAQ
-
-##### Can an existing solver be used to calculate the unit-commitment
-Implementations should not rely on an external solver and thus contain an algorithm written from scratch (clarified in the text as of version v1.1.0)
