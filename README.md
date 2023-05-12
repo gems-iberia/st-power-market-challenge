@@ -9,7 +9,7 @@ The goal of this coding challenge is to provide the applicant some insight into 
 Time is scarce, we know. Therefore, we ask you not to spend more than 4 hours on this challenge. We understand it may not be possible to deliver a fully finished and polished result of the challenge in only four hours. Even though your submission will not be complete, it will provide us plenty of information and topics for further discussions.
 
 This coding-challenge is part of a formal process and is used in collaboration with the recruiting companies we work with.  Submitting a pull-request will not automatically trigger the recruitment process.
-## Who we are :basecampy:
+## Who we are :circus_tent:
 
 We are the Short-Term Optimisation team of BP Iberia within [GEMS](https://gems.engie.com/).
 
