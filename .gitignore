@@ -1,2 +1,2 @@
-# Ignore unpacked data folder
-all_trades_2022/
+all_trades_2022/ # Ignore unpacked data folder
+.ipynb_checkpoints/ # Ignore jupyter notebook data 
