@@ -7,13 +7,22 @@ Created on Sat Dec  2 14:56:01 2023
 """
 
 import pandas as pd
+import zipfile
+import os
 
 # Inputs-----------------------------------------------------------------------
-path = 'data/all_2022.csv'
+zip_path = 'data/all_trades_2022.zip'
+extract_path = 'data/all_trades_2022'
+file_name = 'all_2022.csv'
 
 
 # Load DataFrame--------------------------------------------------------------
-data = pd.read_csv(path)
+# Extract the data if still a zip
+if not os.path.exists(extract_path):
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_path)
+
+data = pd.read_csv(os.path.join(extract_path, file_name))
 
 
 # Analysis with small data-set
@@ -47,5 +56,18 @@ combined_volumes = combined_volumes[[
 top_10_traders = combined_volumes.sort_values(
     by='total_volume', ascending=False).head(10)
 
-
 print(top_10_traders)
+
+
+# 2. Calculate an hourly Volume-Weighted Average Price (vwap)-----------------
+# Calculate monetary value
+data['monetary_value'] = data['energy'] * data['price']
+
+# Calculate hourly vwap
+hourly_vwap = data.groupby('contract_start').agg(sum_monetary_value=('monetary_value', 'sum'),
+                                                 sum_energy=('energy', 'sum'))
+hourly_vwap['vwap'] = hourly_vwap['sum_monetary_value'] / \
+    hourly_vwap['sum_energy']
+
+# Merge hourly vwap info back into data
+data = pd.merge(data, hourly_vwap['vwap'], on='contract_start', how='left')
