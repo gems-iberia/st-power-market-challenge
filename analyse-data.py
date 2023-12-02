@@ -7,6 +7,7 @@ Created on Sat Dec  2 14:56:01 2023
 """
 
 import pandas as pd
+import numpy as np
 import zipfile
 import os
 
@@ -25,9 +26,6 @@ if not os.path.exists(extract_path):
 data = pd.read_csv(os.path.join(extract_path, file_name))
 
 
-# Analysis with small data-set
-#data = data.head(100)
-
 # 1. Give an overview of the top 10 agents in terms of traded volumes --------
 # Calculate total energy traded for buys and sells separately
 buy_volume = data.groupby(
@@ -36,24 +34,25 @@ sell_volume = data.groupby(
     'sell_agent')['energy'].sum().reset_index(name='sell_volume')
 
 # Merge buy and sell volumes
-combined_volumes = pd.merge(
+agent_volumes = pd.merge(
     buy_volume, sell_volume, left_on='buy_agent', right_on='sell_agent', how='outer')
 
 # Fill NaN values with 0 (for agents who only buy or only sell)
-combined_volumes.fillna(0, inplace=True)
+agent_volumes.fillna(0, inplace=True)
 
 # Calculate total volume (buy + sell)
-combined_volumes['total_volume'] = combined_volumes['buy_volume'] + \
-    combined_volumes['sell_volume']
+agent_volumes['total_volume'] = agent_volumes['buy_volume'] + \
+    agent_volumes['sell_volume']
 
-# Rename columns for clarity and drop columns not needed
-combined_volumes.rename(columns={'buy_agent': 'agent'}, inplace=True)
+# Combine buy and sell_agent rows to don´t forget about only sellers
+agent_volumes['agent'] = np.where(
+    agent_volumes['buy_agent'] == 0, agent_volumes['sell_agent'], agent_volumes['buy_agent'])
 
-combined_volumes = combined_volumes[[
+agent_volumes = agent_volumes[[
     'agent', 'total_volume', 'buy_volume', 'sell_volume']]
 
 # Sort by total volume and select the top 10
-top_10_traders = combined_volumes.sort_values(
+top_10_traders = agent_volumes.sort_values(
     by='total_volume', ascending=False).head(10)
 
 print(top_10_traders)
