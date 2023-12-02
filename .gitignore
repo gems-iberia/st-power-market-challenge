@@ -1,2 +1,2 @@
-# Ignore unpacked data files
-data/*.csv
+# Ignore unpacked data folder
+all_trades_2022/
