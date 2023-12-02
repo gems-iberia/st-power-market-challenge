@@ -70,3 +70,42 @@ hourly_vwap['vwap'] = hourly_vwap['sum_monetary_value'] / \
 
 # Merge hourly vwap info back into data
 data = pd.merge(data, hourly_vwap['vwap'], on='contract_start', how='left')
+
+
+# 3. Score agents´ trades according to their spread with vwap. ------------------
+# Add spread and score columns
+data['spread'] = data['price'] - data['vwap']
+data['score'] = data['spread'] / data['vwap']
+data['weighted_score'] = data['score']*data['energy']
+
+# Calculate total scores for buys and sells separately
+buy_score = data.groupby('buy_agent')[
+    'weighted_score'].sum().reset_index(name='buy_score')
+sell_score = data.groupby('sell_agent')[
+    'weighted_score'].sum().reset_index(name='sell_score')
+
+
+# Merge buy and sell scores with agent metrics
+temp = pd.merge(
+    buy_score, sell_score, left_on='buy_agent', right_on='sell_agent', how='outer')
+
+# Fill NaN values with 0 (for agents who only buy or only sell)
+temp.fillna(0, inplace=True)
+
+# Calculate total score. Negative buy and positive sell values favorable
+temp['overall_score'] = temp['sell_score'] - temp['buy_score']
+
+# Combine buy and sell_agent rows to don´t forget about only sellers
+temp['agent'] = np.where(
+    temp['buy_agent'] == 0, temp['sell_agent'], temp['buy_agent'])
+
+agent_metrics = pd.merge(
+    temp[['agent', 'buy_score', 'sell_score', 'overall_score']], agent_volumes, on='agent')
+
+# Sort by total volume and select the top 10
+top_10_traders = agent_metrics.sort_values(
+    by='total_volume', ascending=False).head(10)
+
+
+# Print or save the result
+print(top_10_traders)
